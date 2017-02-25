@@ -15,7 +15,7 @@ angular
     this.getBookings = function() {
       return $http({
         "method": "get",
-        "url": './view1/data.json'
+        "url": './data.json'
         });
     };
   })
