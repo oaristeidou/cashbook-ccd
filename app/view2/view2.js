@@ -9,6 +9,25 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
+.controller('View2Ctrl', view2Ctrl);
 
-}]);
+  function view2Ctrl(){
+    var vm= this;
+    vm.submitData = function (transaction) {
+      var config = {
+        params: {
+          transaction: transaction
+        }
+      };
+
+    $http.post("/book", null, config)
+      .success(function (data, status, headers, config)
+      {
+        vm[ajaxSubmitResult] = data;
+      })
+      .error(function (data, status, headers, config)
+      {
+        vm[ajaxSubmitResult] = "SUBMIT ERROR";
+      });
+    };
+  }

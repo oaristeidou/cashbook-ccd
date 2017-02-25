@@ -12,7 +12,7 @@ angular
   }])
 
   .service ('appService', function($http) {
-    this.getPersons = function() {
+    this.getBookings = function() {
       return $http({
         "method": "get",
         "url": './view1/data.json'
@@ -20,14 +20,11 @@ angular
     };
   })
 
-  .controller('View1Ctrl',['$scope', '$resource', '$location', '$http', 'appService', View1Ctrl]);
+  .controller('View1Ctrl', view1Ctrl);
 
-  function View1Ctrl($scope, $resource, $location, $http, appService) {
-
-    appService.getPersons().then(function(persons){
-      $scope.persons = persons.data;
+  function view1Ctrl(appService) {
+    var vm= this;
+    appService.getBookings().then(function(bookings){
+      vm.bookings = bookings.data;
     });
-
-
-
   }

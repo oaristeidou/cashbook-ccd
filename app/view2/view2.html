@@ -1,5 +1,17 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<form name="transactionForm" novalidate>
+  <label for="date">Datum:</label>
+  <input id="date" type="text" name="date" ng-model="transaction.date" required /><br />
+
+  <label for="name">Transaction Art:</label>
+  <input id="name" type="text" name="name" ng-model="transaction.name" required /><br />
+
+  <label for="amount">Betrag:</label>
+  <input id="amount" type="text" name="amount" ng-model="transaction.amount" required /><br />
+  <br />
+  <button type="submit"
+          ng-click="submitData(transaction)"
+          ng-disabled="transactionForm.$invalid">Submit</button>
+
+  <strong><label for="submitDebugText">Submit result:</label></strong><br />
+  <textarea id="submitDebugText">{{ajaxSubmitResult | json}}</textarea>
+</form>

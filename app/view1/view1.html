@@ -1,17 +1,17 @@
-<div ng-controller="View2Ctrl as showCase">
+<div ng-controller="View1Ctrl as showCase">
   <table datatable="ng" class="row-border hover">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>FirstName</th>
-      <th>LastName</th>
+      <th>Date</th>
+      <th>Transaktion Art</th>
+      <th>Betrag</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="person in persons">
-      <td>{{ person.id }}</td>
-      <td>{{ person.firstName }}</td>
-      <td>{{ person.lastName }}</td>
+    <tr ng-repeat="booking in showCase.bookings">
+      <td>{{ booking.date }}</td>
+      <td>{{ booking.name }}</td>
+      <td>{{ booking.amount }}</td>
     </tr>
     </tbody>
   </table>
