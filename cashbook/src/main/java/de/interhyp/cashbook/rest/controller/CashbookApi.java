@@ -29,10 +29,16 @@ public class CashbookApi {
   private IMensagemRepository mensagemRepository;
 
   @RequestMapping(value = "/book", method = RequestMethod.POST)
-  @ResponseStatus(HttpStatus.OK)
-  public void buchungVornehmen (@RequestBody BookingEntry bookingEntry){
-    mensagemRepository.save(bookingEntry);
+  @ResponseStatus(HttpStatus.CREATED)
+  public void buchungVornehmen (@RequestParam(value = "date") String datum, @RequestParam(value = "name") String art, @RequestParam(value = "amount") final double betrag){
+    mensagemRepository.save(new BookingEntry(datum, art, betrag));
   }
+
+//  @RequestMapping(value = "/book", method = RequestMethod.POST)
+//  @ResponseStatus(HttpStatus.OK)
+//  public void buchungVornehmen (@RequestBody BookingEntry bookingEntry){
+//    mensagemRepository.save(bookingEntry);
+//  }
 
   @RequestMapping(value = "/monthsReportCalc", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)

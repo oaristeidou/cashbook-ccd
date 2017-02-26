@@ -1,17 +1,45 @@
-<form name="transactionForm" novalidate>
-  <label for="date">Datum:</label>
-  <input id="date" type="text" name="date" ng-model="transaction.date" required /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form ng-submit="addNew(booking)">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Datum" ng-model="booking.date" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Transaktion Name" ng-model="booking.name" required>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Beitrag" ng-model="booking.amount" required>
+            </div>
+            <div class="clearfix">
+              <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <label for="name">Transaction Art:</label>
-  <input id="name" type="text" name="name" ng-model="transaction.name" required /><br />
-
-  <label for="amount">Betrag:</label>
-  <input id="amount" type="text" name="amount" ng-model="transaction.amount" required /><br />
-  <br />
-  <button type="submit"
-          ng-click="submitData(transaction)"
-          ng-disabled="transactionForm.$invalid">Submit</button>
-
-  <strong><label for="submitDebugText">Submit result:</label></strong><br />
-  <textarea id="submitDebugText">{{ajaxSubmitResult | json}}</textarea>
-</form>
+  <div class="row" ng-hide="!bookings.length">
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Transaktion Name</th>
+          <th>Beitrag</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="booking in bookings">
+          <td>{{booking.date}}</td>
+          <td>{{booking.name}}</td>
+          <td>{{booking.amount | currency}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

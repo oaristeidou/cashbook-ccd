@@ -32,7 +32,7 @@ public class UI {
 
   void run() {
     // while for input eingabe
-    BookingEntry eingabe = new BookingEntry(new Date(), "Test betrag", 100d);
+    BookingEntry eingabe = new BookingEntry("04.09.2016", "Test betrag", 100d);
     buchungVornahmeCosumer.accept(eingabe);
 
     //monatBlattConsumer.accept(new Date());

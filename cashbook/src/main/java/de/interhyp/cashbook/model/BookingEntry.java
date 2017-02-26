@@ -11,21 +11,21 @@ public class BookingEntry {
   @Id
   private String id;
 
-  private Date date;
+  private String date;
   private String name;
   private double amount;
 
-  public BookingEntry(Date date, String name, double amount) {
+  public BookingEntry(String date, String name, double amount) {
     this.date = date;
     this.name = name;
     this.amount = amount;
   }
 
-  public Date getDate() {
+  public String getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(String date) {
     this.date = date;
   }
 
