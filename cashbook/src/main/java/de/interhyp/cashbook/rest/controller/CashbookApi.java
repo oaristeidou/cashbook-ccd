@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CashbookApi {
 
   @RequestMapping(value = "/book", method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
-  public void buchungVornehmen (@RequestParam(value = "date") String datum, @RequestParam(value = "name") String art, @RequestParam(value = "amount") final double betrag){
+  public void buchungVornehmen (@RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date datum, @RequestParam(value = "name") String art, @RequestParam(value = "amount") final double betrag){
     mensagemRepository.save(new BookingEntry(datum, art, betrag));
   }
 

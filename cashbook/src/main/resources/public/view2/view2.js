@@ -19,7 +19,7 @@ angular.module('myApp.view2', ['ngRoute'])
     this.saveBooking = function($scope, booking) {
       // use $.param jQuery function to serialize data from JSON
       var data = $.param({
-        "date": booking.date,
+        "date": booking.date.toISOString(),
         "name": booking.name,
         "amount": booking.amount
       });
@@ -32,7 +32,7 @@ angular.module('myApp.view2', ['ngRoute'])
       $http.post('/book', data, config)
         .then(function (data) {
           $scope.bookings.push({
-            'date': booking.date,
+            'date': booking.date.toISOString(),
             'name': booking.name,
             'amount': booking.amount
           });
