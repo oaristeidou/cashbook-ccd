@@ -15,7 +15,7 @@ angular
     this.getBookings = function() {
       return $http({
         "method": "get",
-        "url": './data.json'
+        "url": '/monthsReportCalc'
         });
     };
   })
