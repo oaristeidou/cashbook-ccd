@@ -1,7 +1,6 @@
 package de.interhyp.cashbook.rest.controller;
 
 import de.interhyp.cashbook.model.BookingEntry;
-import de.interhyp.cashbook.model.MonthSheet;
 import de.interhyp.cashbook.repository.IMensagemRepository;
 import de.interhyp.cashbook.service.BookingImpl;
 import de.interhyp.cashbook.service.IBooking;
@@ -12,8 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -23,28 +20,19 @@ import java.util.List;
 @RestController
 public class CashbookApi {
 
-  private IBooking booking = new BookingImpl();
-  private IMonatSheet monatSheet = new MonatSheetImpl();
-
   @Autowired
-  private IMensagemRepository mensagemRepository;
+  private IMensagemRepository messageRepository;
 
   @RequestMapping(value = "/book", method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
   public void buchungVornehmen (@RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date datum, @RequestParam(value = "name") String art, @RequestParam(value = "amount") final double betrag){
-    mensagemRepository.save(new BookingEntry(datum, art, betrag));
+    messageRepository.save(new BookingEntry(datum, art, betrag));
   }
-
-//  @RequestMapping(value = "/book", method = RequestMethod.POST)
-//  @ResponseStatus(HttpStatus.OK)
-//  public void buchungVornehmen (@RequestBody BookingEntry bookingEntry){
-//    mensagemRepository.save(bookingEntry);
-//  }
 
   @RequestMapping(value = "/monthsReportCalc", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
   public List<BookingEntry> monatsBlattBrechnen ()
   {
-  return mensagemRepository.findAll();
+  return messageRepository.findAll();
   }
 }
